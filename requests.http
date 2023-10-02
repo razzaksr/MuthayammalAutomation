@@ -1,0 +1,13 @@
+GET http://localhost:7070/admin/multi/alpha-delta
+
+###
+GET http://localhost:7070/admin/allmajorsalone
+
+###
+
+GET http://localhost:7070/admin/allsubs
+
+
+###
+
+GET http://localhost:7070/admin/subsecr/4
