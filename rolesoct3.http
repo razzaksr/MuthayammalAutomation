@@ -1,0 +1,22 @@
+POST http://localhost:1234/roles/proposal
+content-type: application/json
+
+{
+    "eveName":"VAC",
+    "eveProposedBy":"Assistant Professor",
+    "eveDept":1
+}
+
+GET http://localhost:1234/roles/readlevel1/2305
+
+PUT http://localhost:1234/roles/level1/2305/Professor
+
+PUT http://localhost:1234/roles/level2/2305
+
+POST http://localhost:1234/roles/society
+content-type: application/json
+
+{
+    "eveName":"Hackathon",
+    "eveDept":1
+}
