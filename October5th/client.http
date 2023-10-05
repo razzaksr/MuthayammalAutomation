@@ -1,0 +1,35 @@
+POST http://localhost:1234/work/proposal
+Content-Type: application/json
+
+{
+    "workshop_name":"Kubernetes",
+    "dept_id":1,
+    "proposal_by":6007
+}
+
+###
+
+GET http://localhost:1234/work/authorities/1
+
+###
+GET http://localhost:1234/work/yetbylevel1/6001
+
+###
+
+PUT http://localhost:1234/work/approveallbylevel1/6001
+
+###
+PUT http://localhost:1234/work/approvebylevel1/4/6001
+
+###
+# PUT http://localhost:1234/work/approvebylevel2/1
+
+
+###
+GET http://localhost:1234/work/yetbyeverylevel/6001
+
+###
+GET http://localhost:1234/work/yetbyeverylevel/6002
+
+###
+PUT http://localhost:1234/work/approvebyeverylevel/6002
