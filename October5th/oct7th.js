@@ -4,6 +4,8 @@ const base=require('./db')
 const cors=require('cors')
 
 route.use(cors())
+//  next update report_lvl1 by given emp_id where eve_status=0 and worshop_id = given one and make sure to find the total authorisation which refers acknowedgelevel2/:deptId/:wid
+
 
 route.get('/loadforlevel1/:deptId/:empId',async(req,res)=>{
     const dId=req.params.deptId
