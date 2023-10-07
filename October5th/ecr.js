@@ -3,37 +3,107 @@ const route=express.Router()
 const base=require('./db')
 
 // proposing an workshop event either by assistance professor or faculty coordinator
+// alternate
 route.post('/proposal',async(req,res)=>{
     // receive the request from client
     const{workshop_name,dept_id,proposal_by}=req.body
 
-    let approvals;
-
-    // fetch authorities from master table data_approvals
-    let sql="select * from data_approvals where dept_id=? and subtype_id=1901"
-    base.query(sql,[dept_id],(err,row)=>{
-        if(err){
-            res.status(500).json({error:err.message})
-            return
-        }
-        if(row.length==0){
-            res.status(404).json({message:"No authorities matches for the workshop"})
-            return
-        }
-        approvals=row[0]
-        //console.log(approvals)
-
-        // insert new ecr entry in data_ecr_workshop with deault and user defined values
-        sql="insert into data_ecr_workshop(workshop_name,report_lvl1,report_lvl2,report_lvl3,report_lvl4,report_lvl5,dept_id,eve_proposed_by) values(?,?,?,?,?,?,?,?)"
-        base.query(sql,[workshop_name,approvals.report_lvl1,approvals.report_lvl2,approvals.report_lvl3,approvals.report_lvl4,approvals.report_lvl5,dept_id,proposal_by],(err,ack)=>{
+    sql="insert into data_ecr_workshop(workshop_name,dept_id,eve_proposed_by) values(?,?,?)"
+        base.query(sql,[workshop_name,dept_id,proposal_by],(err,ack)=>{
             if(err){
                 res.status(500).json({error:err.message})
                 return
             }
             res.status(200).json({message:"Wokshop Proposal has sent",id:ack.insertId})
         })
-    })
 })
+
+//alternate
+// route.get('/yetbyeverylevel/:empid',async(req,res)=>{
+//     const id=req.params.empid
+//     let found=new Array()
+//     // let sql="select * from data_approvals where report_lvl1 like ? or report_lvl2 like ? or report_lvl3 like ? or report_lvl4 like ? or report_lvl5 like ?"
+//     // let sql = "select report_lvl1 as column_name from data_approvals where report_lvl1 like ? and subtype_id=1901 union select report_lvl2 as column_name from data_approvals where report_lvl2 like ? and subtype_id=1901 union select report_lvl3 as column_name from data_approvals where report_lvl3 like ? and subtype_id=1901 union select report_lvl4 as column_name from data_approvals where report_lvl4 like ? and subtype_id=1901 union select report_lvl5 as column_name from data_approvals where report_lvl5 like ? and subtype_id=1901"
+//     base.query(sql,['%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%'],(err,rows)=>{
+//         if(err){
+//             res.status(500).json({error:err.message})
+//             return
+//         }
+//         if(rows.length==0){
+//             res.status(404).json({message:"No ECR Workshop mathced"})
+//             return
+//         }
+//         res.status(200).json({rows})
+//     })
+//     // let sql="select * from data_ecr_workshop where is_eve_completed is null and report_lvl1 like ? or report_lvl2 like ? or report_lvl3 like ? or report_lvl4 like ? or report_lvl5 like ?"
+//     // base.query(sql,['%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%'],(err,rows)=>{
+//     //     if(err){
+//     //         res.status(500).json({error:err.message})
+//     //         return
+//     //     }
+//     //     if(rows.length==0){
+//     //         res.status(404).json({message:"No ECR Workshop mathced"})
+//     //         return
+//     //     }
+//     //     rows.map((row)=>{
+//     //         //console.log(JSON.stringify(row.report_lvl1).includes(id))
+//     //         if(row['report_lvl1'].includes(id)){
+//     //             found.push("report_lvl1")
+//     //             // console.log("Found @ report_lvl1")
+//     //         }
+//     //         if(row['report_lvl2'].includes(id)){
+//     //             found.push("report_lvl2")
+//     //             // console.log("Found @ report_lvl2")
+//     //         }
+//     //         if(row['report_lvl3']!=null&&row['report_lvl3'].includes(id)){
+//     //             found.push("report_lvl3")
+//     //             // console.log("Found @ report_lvl3")
+//     //         }
+//     //         if(row['report_lvl4']!=null&&row['report_lvl4'].includes(id)){
+//     //             found.push("report_lvl4")
+//     //             // console.log("Found @ report_lvl4")
+//     //         }
+//     //         if(row['report_lvl5']!=null&&row['report_lvl5'].includes(id)){
+//     //             found.push("report_lvl5")
+//     //             // console.log("Found @ report_lvl5")
+//     //         }
+//     //     })
+//     //     console.log(found)
+//     //     res.status(200).json({rows})
+//     // })
+// })
+
+// route.post('/proposal',async(req,res)=>{
+//     // receive the request from client
+//     const{workshop_name,dept_id,proposal_by}=req.body
+
+//     let approvals;
+
+//     // fetch authorities from master table data_approvals
+//     let sql="select * from data_approvals where dept_id=? and subtype_id=1901"
+//     base.query(sql,[dept_id],(err,row)=>{
+//         if(err){
+//             res.status(500).json({error:err.message})
+//             return
+//         }
+//         if(row.length==0){
+//             res.status(404).json({message:"No authorities matches for the workshop"})
+//             return
+//         }
+//         approvals=row[0]
+//         //console.log(approvals)
+
+//         // insert new ecr entry in data_ecr_workshop with deault and user defined values
+//         sql="insert into data_ecr_workshop(workshop_name,report_lvl1,report_lvl2,report_lvl3,report_lvl4,report_lvl5,dept_id,eve_proposed_by) values(?,?,?,?,?,?,?,?)"
+//         base.query(sql,[workshop_name,approvals.report_lvl1,approvals.report_lvl2,approvals.report_lvl3,approvals.report_lvl4,approvals.report_lvl5,dept_id,proposal_by],(err,ack)=>{
+//             if(err){
+//                 res.status(500).json({error:err.message})
+//                 return
+//             }
+//             res.status(200).json({message:"Wokshop Proposal has sent",id:ack.insertId})
+//         })
+//     })
+// })
 
 // check the authority approvals in each level
 route.get('/authorities/:id',async(req,res)=>{
@@ -111,46 +181,92 @@ route.put('/approvebylevel1/:wid/:empid',async(req,res)=>{
 
 
 // find approval level where the gicen employee id is part of it
-route.get('/yetbyeverylevel/:empid',async(req,res)=>{
-    const id=req.params.empid
-    let found=new Array()
-    let sql="select * from data_ecr_workshop where is_eve_completed is null and report_lvl1 like ? or report_lvl2 like ? or report_lvl3 like ? or report_lvl4 like ? or report_lvl5 like ?"
-    base.query(sql,['%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%'],(err,rows)=>{
-        if(err){
-            res.status(500).json({error:err.message})
-            return
-        }
-        if(rows.length==0){
-            res.status(404).json({message:"No ECR Workshop mathced"})
-            return
-        }
-        rows.map((row)=>{
-            //console.log(JSON.stringify(row.report_lvl1).includes(id))
-            if(row['report_lvl1'].includes(id)){
-                found.push("report_lvl1")
-                // console.log("Found @ report_lvl1")
-            }
-            if(row['report_lvl2'].includes(id)){
-                found.push("report_lvl2")
-                // console.log("Found @ report_lvl2")
-            }
-            if(row['report_lvl3']!=null&&row['report_lvl3'].includes(id)){
-                found.push("report_lvl3")
-                // console.log("Found @ report_lvl3")
-            }
-            if(row['report_lvl4']!=null&&row['report_lvl4'].includes(id)){
-                found.push("report_lvl4")
-                // console.log("Found @ report_lvl4")
-            }
-            if(row['report_lvl5']!=null&&row['report_lvl5'].includes(id)){
-                found.push("report_lvl5")
-                // console.log("Found @ report_lvl5")
-            }
-        })
-        console.log(found)
-        res.status(200).json({rows})
-    })
-})
+// route.get('/yetbyeverylevel/:empid',async(req,res)=>{
+//     const id=req.params.empid
+//     let found=new Array()
+//     let sql="select * from data_ecr_workshop where is_eve_completed is null and report_lvl1 like ? or report_lvl2 like ? or report_lvl3 like ? or report_lvl4 like ? or report_lvl5 like ?"
+//     base.query(sql,['%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%'],(err,rows)=>{
+//         if(err){
+//             res.status(500).json({error:err.message})
+//             return
+//         }
+//         if(rows.length==0){
+//             res.status(404).json({message:"No ECR Workshop mathced"})
+//             return
+//         }
+//         rows.map((row)=>{
+//             //console.log(JSON.stringify(row.report_lvl1).includes(id))
+//             if(row['report_lvl1'].includes(id)){
+//                 found.push("report_lvl1")
+//                 // console.log("Found @ report_lvl1")
+//             }
+//             if(row['report_lvl2'].includes(id)){
+//                 found.push("report_lvl2")
+//                 // console.log("Found @ report_lvl2")
+//             }
+//             if(row['report_lvl3']!=null&&row['report_lvl3'].includes(id)){
+//                 found.push("report_lvl3")
+//                 // console.log("Found @ report_lvl3")
+//             }
+//             if(row['report_lvl4']!=null&&row['report_lvl4'].includes(id)){
+//                 found.push("report_lvl4")
+//                 // console.log("Found @ report_lvl4")
+//             }
+//             if(row['report_lvl5']!=null&&row['report_lvl5'].includes(id)){
+//                 found.push("report_lvl5")
+//                 // console.log("Found @ report_lvl5")
+//             }
+//         })
+//         console.log(found)
+//         res.status(200).json({rows})
+//     })
+// })
+
+//alternate
+// route.get('/waitingfor/:empid/:dept',async(req,res)=>{
+//     const id=req.params.empid
+//     let found=new Array()
+//     base.query("select workshop_id from data_ecr_workshop where dept_id=?",[req.params.dept],(err,row)=>{
+//         found=row
+//         res.status(200).json({message:row})
+//     })
+//     // let sql="select * from data_ecr_workshop where is_eve_completed is null and report_lvl1 like ? or report_lvl2 like ? or report_lvl3 like ? or report_lvl4 like ? or report_lvl5 like ?"
+//     // base.query(sql,['%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%','%'+id+'%'],(err,rows)=>{
+//     //     if(err){
+//     //         res.status(500).json({error:err.message})
+//     //         return
+//     //     }
+//     //     if(rows.length==0){
+//     //         res.status(404).json({message:"No ECR Workshop mathced"})
+//     //         return
+//     //     }
+//     //     rows.map((row)=>{
+//     //         //console.log(JSON.stringify(row.report_lvl1).includes(id))
+//     //         if(row['report_lvl1'].includes(id)){
+//     //             found.push("report_lvl1")
+//     //             // console.log("Found @ report_lvl1")
+//     //         }
+//     //         if(row['report_lvl2'].includes(id)){
+//     //             found.push("report_lvl2")
+//     //             // console.log("Found @ report_lvl2")
+//     //         }
+//     //         if(row['report_lvl3']!=null&&row['report_lvl3'].includes(id)){
+//     //             found.push("report_lvl3")
+//     //             // console.log("Found @ report_lvl3")
+//     //         }
+//     //         if(row['report_lvl4']!=null&&row['report_lvl4'].includes(id)){
+//     //             found.push("report_lvl4")
+//     //             // console.log("Found @ report_lvl4")
+//     //         }
+//     //         if(row['report_lvl5']!=null&&row['report_lvl5'].includes(id)){
+//     //             found.push("report_lvl5")
+//     //             // console.log("Found @ report_lvl5")
+//     //         }
+//     //     })
+//     //     console.log(found)
+//     //     res.status(200).json({rows})
+//     // })
+// })
 
 // update approval level where the gicen employee id is part of it
 route.put('/approvebyeverylevel/:empid',async(req,res)=>{
@@ -199,6 +315,7 @@ route.put('/approvebyeverylevel/:empid',async(req,res)=>{
         res.status(200).json({rows})
     })
 })
+
 // route.put('/approvebyeverylevel/:empid',async(req,res)=>{
 //     const id=req.params.empid
 //     // let sql="select * from data_ecr_workshop where is_eve_completed is null and report_lvl1 like ? or report_lvl2 like ? or report_lvl3 like ? or report_lvl4 like ? or report_lvl5 like ?"

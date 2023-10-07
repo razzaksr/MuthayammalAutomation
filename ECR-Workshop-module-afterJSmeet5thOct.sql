@@ -33,3 +33,5 @@ use mec_automation;
 
 -- insert into data_faculties values(6001,"Dr.G.Kavitha",1,403),(6002,"Dr.A.S.Prabakaran",1,404),(6003,"Dr.Sabarinathan",3,403),(6004,"Dr.Arun Rajput",3,404),(6005,"Dr.Sheik Ameeth",5,403),(6006,"Dr.Valli",5,404),(6007,"Victor Prakash",1,406),(6008,"Martin",5,406),(6009,"Kevin",3,406),(6010,"Downey",1,407);
 -- insert into data_approvals(approval_id,subtype_id,report_lvl1,report_lvl2,dept_id) values(1001,1901,"6001,6002","6000",1),(1002,1901,"6005,6005","6000",5),(1003,1901,"6003,6004","6000",3);
+
+-- update data_ecr_workshop set report_lvl1 = case when report_lvl1 like '%6001%' then '6001' else report_lvl1 end,report_lvl2 = case when report_lvl2 like '%6001%' then '6001' else report_lvl2 end,report_lvl3 = case when report_lvl3 like '%6001%' then '6001' else report_lvl3 end,report_lvl4 = case when report_lvl4 like '%6001%' then '6001' else report_lvl4 end,report_lvl5 = case when report_lvl5 like '%6001%' then '6001' else report_lvl5 end where report_lvl1 like '%6001%' or report_lvl2 like '%6001%' or report_lvl3 like '%6001%' or report_lvl4 like '%6001%' or report_lvl5 like '%6001%';

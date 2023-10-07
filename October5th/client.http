@@ -2,7 +2,7 @@ POST http://localhost:1234/work/proposal
 Content-Type: application/json
 
 {
-    "workshop_name":"Kubernetes",
+    "workshop_name":"Front end development",
     "dept_id":1,
     "proposal_by":6007
 }
@@ -22,6 +22,9 @@ PUT http://localhost:1234/work/approveallbylevel1/6001
 PUT http://localhost:1234/work/approvebylevel1/4/6001
 
 ###
+PUT http://localhost:1234/work/approvebylevel1/4/6004
+
+###
 # PUT http://localhost:1234/work/approvebylevel2/1
 
 
@@ -32,4 +35,4 @@ GET http://localhost:1234/work/yetbyeverylevel/6001
 GET http://localhost:1234/work/yetbyeverylevel/6002
 
 ###
-PUT http://localhost:1234/work/approvebyeverylevel/6002
+# GET http://localhost:1234/work/waitingfor/6001/1

@@ -1,0 +1,19 @@
+GET http://localhost:1234/six/waitlevel1
+
+###
+GET http://localhost:1234/six/authorities/1
+
+###
+GET http://localhost:1234/six/authoritiesofemp/1/6001
+
+###
+PUT http://localhost:1234/six/acknowledgelevel1/3/6003
+
+###
+GET http://localhost:1234/six/acknowledgelevel2/1
+
+###
+GET http://localhost:1234/six/getacknowledgelevel2/5
+
+###
+PUT http://localhost:1234/six/acknowedgelevel2/3/3
