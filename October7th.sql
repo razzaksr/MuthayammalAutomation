@@ -172,4 +172,37 @@ use mec_automation;
 
 
 
-update data_ecr_workshop set is_eve_completed=1 where dept_id=? and eve_status=?
+-- update data_ecr_workshop set is_eve_completed=1 where dept_id=? and eve_status=?
+
+-- DELIMITER //
+
+-- CREATE PROCEDURE InsertWorkshop(
+--     IN workshop_name VARCHAR(255),
+--     IN faculty_dept INT,
+--     IN faculty_id INT
+-- )
+-- BEGIN
+--     DECLARE employee_department_id INT;
+
+--     -- Get the department_id associated with the given employee_id
+--     SELECT faculty_dept INTO employee_department_id
+--     FROM data_faculties
+--     WHERE faculty_id = faculty_id limit 1;
+
+--     -- Check if the employee belongs to the specified department
+--     IF employee_department_id = faculty_dept THEN
+--         -- Insert the event details into the 'events' table
+--         -- INSERT INTO data_ecr_workshop (workshop_name, dept_id, eve_proposed_by)
+-- --         VALUES (workshop_name, faculty_dept, faculty_id);
+--         SELECT 'Event inserted successfully.' AS result;
+--     ELSE
+--         SELECT 'Employee does not belong to the specified department.' AS result;
+--     END IF;
+-- END;
+-- //
+
+-- DELIMITER ;
+
+
+call InsertWorkshop('Flask API',5,6008);
+-- drop procedure InsertWorkshop;

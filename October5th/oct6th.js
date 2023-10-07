@@ -1,6 +1,9 @@
 const express=require('express')
 const route=express.Router()
 const base=require('./db')
+const cors=require('cors')
+
+route.use(cors())
 
 route.put('/acknowedgelevel2/:deptId/:wid',async(req,res)=>{
     const dId=req.params.deptId
@@ -203,6 +206,7 @@ route.get('/authoritiesofemp/:id/:empId',async(req,res)=>{
             return
         }
         let obj={}
+        console.log(row)
         for (let index = 0; index < row[0].length; index++) {
             if(row[0][index].column_value.includes(eid)){
                 console.log(row[0][index].column_name+" "+row[0][index].column_value)

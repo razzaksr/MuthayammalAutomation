@@ -1,0 +1,24 @@
+GET http://localhost:1234/seven/find/5
+###
+POST http://localhost:1234/work/proposal
+Content-Type: application/json
+
+{
+    "workshop_name":"Vue",
+    "dept_id":1,
+    "proposal_by":6001
+}
+
+###
+GET http://localhost:1234/six/authorities/5
+
+###
+GET http://localhost:1234/seven/loadforlevel1/3/6003
+###
+PUT http://localhost:1234/six/acknowledgelevel1/5/6005
+
+###
+GET http://localhost:1234/six/getacknowledgelevel2/5
+
+###
+PUT http://localhost:1234/six/acknowedgelevel2/5/8

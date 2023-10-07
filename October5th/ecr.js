@@ -1,6 +1,9 @@
 const express=require('express')
 const route=express.Router()
 const base=require('./db')
+const cors=require('cors')
+
+route.use(cors())
 
 // proposing an workshop event either by assistance professor or faculty coordinator
 // alternate
