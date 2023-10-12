@@ -22,3 +22,15 @@ GET http://localhost:1234/ecr/getacknowledgelevel2/3
 
 ###
 PUT http://localhost:1234/ecr/acknowedgelevel2/3/12
+
+###
+POST http://localhost:1234/login
+Content-Type: application/json
+
+{
+    "mail":"hod.cse@mec.in",
+    "pass":"mec@cse"
+}
+
+###
+
