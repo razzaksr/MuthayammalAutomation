@@ -5,8 +5,8 @@ Content-Type: application/json
 
 {
     "workshop_name":"Kubernetes",
-    "dept_id":3,
-    "proposal_by":6009
+    "dept_id":1,
+    "proposal_by":6001
 }
 
 ###
