@@ -1,0 +1,24 @@
+GET http://localhost:1234/ecr/find/3
+###
+POST http://localhost:1234/ecr/proposal
+Content-Type: application/json
+
+{
+    "workshop_name":"Kubernetes",
+    "dept_id":3,
+    "proposal_by":6009
+}
+
+###
+GET http://localhost:1234/ecr/authorities/3
+
+###
+GET http://localhost:1234/ecr/loadforlevel1/3/6003
+###
+PUT http://localhost:1234/ecr/acknowledgelevel1/3/6003
+
+###
+GET http://localhost:1234/ecr/getacknowledgelevel2/3
+
+###
+PUT http://localhost:1234/ecr/acknowedgelevel2/3/12

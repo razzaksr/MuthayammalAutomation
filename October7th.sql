@@ -192,8 +192,8 @@ use mec_automation;
 --     -- Check if the employee belongs to the specified department
 --     IF employee_department_id = faculty_dept THEN
 --         -- Insert the event details into the 'events' table
---         -- INSERT INTO data_ecr_workshop (workshop_name, dept_id, eve_proposed_by)
--- --         VALUES (workshop_name, faculty_dept, faculty_id);
+--         INSERT INTO data_ecr_workshop (workshop_name, dept_id, eve_proposed_by)
+--         VALUES (workshop_name, faculty_dept, faculty_id);
 --         SELECT 'Event inserted successfully.' AS result;
 --     ELSE
 --         SELECT 'Employee does not belong to the specified department.' AS result;
@@ -204,5 +204,9 @@ use mec_automation;
 -- DELIMITER ;
 
 
-call InsertWorkshop('Flask API',5,6008);
+-- call InsertWorkshop('Spring Boot',5,6001);
+-- commit;
 -- drop procedure InsertWorkshop;
+
+-- select workshop_id,workshop_name from data_ecr_workshop where eve_status=0 and report_lvl1 is null and is_eve_completed is null and dept_id=1;
+select report_lvl1 from data_approvals where dept_id=3 and report_lvl1 like '%6003%'
