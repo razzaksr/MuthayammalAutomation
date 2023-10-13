@@ -79,7 +79,7 @@ route.get('/loadforlevel1/:deptId/:empId',async(req,res)=>{
             res.status(404).json({error:"No matches"})
             return
         }
-        sql="select workshop_id,workshop_name from data_ecr_workshop where eve_status=0 and report_lvl1 is null and is_eve_completed is null and dept_id=?"
+        sql="select workshop_id,workshop_name,eve_proposed_by from data_ecr_workshop where eve_status=0 and report_lvl1 is null and is_eve_completed is null and dept_id=?"
         base.query(sql,[dId],(err,rows)=>{
             if(err){res.status(500).json({error:err.message});return;}
             if(row.length==0){res.status(404).json({error:"Nothing to show"})}

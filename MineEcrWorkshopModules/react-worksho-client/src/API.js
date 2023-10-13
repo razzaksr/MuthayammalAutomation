@@ -20,3 +20,13 @@ export const callLogin=async(obj)=>{
     const response=await axios.post(`${url}/login`,obj)
     return response.data
 }
+
+export const callLoadLevel1=async(dept,emp)=>{
+    const response=await axios.get(`${url}/ecr/loadforlevel1/${dept}/${emp}`)
+    return response.data.rows
+}
+
+export const callAcceptLevel1=async(dept,emp)=>{
+    const response=await axios.put(`${url}/ecr/acknowledgelevel1/${dept}/${emp}`)
+    return response.data.message
+}
