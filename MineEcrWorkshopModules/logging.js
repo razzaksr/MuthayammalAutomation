@@ -7,7 +7,7 @@ route.use(cors())
 
 route.post('/login',async(req,res)=>{
     const{mail,pass}=req.body
-    const sql="select * from data_faculties_new where email=? and password=?"
+    const sql="select * from data_faculties where email=? and password=?"
     base.query(sql,[mail,pass],(err,rows)=>{
         if(err){
             res.status(500).json({error:err.message})

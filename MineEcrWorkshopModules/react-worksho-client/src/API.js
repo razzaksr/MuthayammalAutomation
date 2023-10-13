@@ -30,3 +30,14 @@ export const callAcceptLevel1=async(dept,emp)=>{
     const response=await axios.put(`${url}/ecr/acknowledgelevel1/${dept}/${emp}`)
     return response.data.message
 }
+
+export const callLoadForLevel2=async(dept)=>{
+    // alert(dept)
+    const response=await axios.get(`${url}/ecr/getacknowledgelevel2/${dept}`)
+    return response.data.row
+}
+
+export const callAcceptLevel2=async(dept,wid)=>{
+    const response=await axios.put(`${url}/ecr/acknowedgelevel2/${dept}/${wid}`)
+    return response.data.message
+}

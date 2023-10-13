@@ -18,7 +18,7 @@ GET http://localhost:1234/ecr/loadforlevel1/1/6002
 PUT http://localhost:1234/ecr/acknowledgelevel1/1/6001
 
 ###
-GET http://localhost:1234/ecr/getacknowledgelevel2/3
+GET http://localhost:1234/ecr/getacknowledgelevel2/1
 
 ###
 PUT http://localhost:1234/ecr/acknowedgelevel2/3/12

@@ -143,7 +143,7 @@ route.put('/acknowledgelevel1/:deptId/:empId',async(req,res)=>{
 
 route.get('/getacknowledgelevel2/:deptId',async(req,res)=>{
     const dId=req.params.deptId
-    let sql="select workshop_id from data_ecr_workshop where eve_status=1 and is_eve_completed is null and dept_id=?"
+    let sql="select workshop_id,workshop_name,eve_proposed_by,dept_id from data_ecr_workshop where eve_status=1 and is_eve_completed is null and dept_id=?"
     base.query(sql,[dId],(err,row)=>{
         if(err){
             res.status(500).json({error:err.message})

@@ -4,4 +4,5 @@ use mec_automation;
 -- alter table data_faculties_new add column email varchar(255) not null, add column password varchar(255) not null;
 -- describe data_faculties_new;
 
-insert into data_faculties_new(email,password) values()
+-- alter table data_faculties rename faculties;
+-- alter table data_faculties_new rename data_faculties;
