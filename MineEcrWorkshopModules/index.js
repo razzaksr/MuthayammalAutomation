@@ -3,6 +3,7 @@ const bodyParser=require('body-parser')
 const cors=require('cors')
 const workshop=require('./ecrWorkshopFlow')
 const authorize=require('./logging')
+const seminar=require('./ecrSeminarFlow')
 
 const app=express()
 
@@ -12,6 +13,7 @@ app.use(cors())
 
 app.use('/ecr',workshop)
 app.use('',authorize)
+app.use('/seminar',seminar)
 
 
 app.listen(1234,()=>{

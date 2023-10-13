@@ -21,15 +21,15 @@ export const Login=()=>{
     }
 
     const sendToLogin=async()=>{
-        console.log(JSON.stringify(log))
+        //console.log(JSON.stringify(log))
         const data=await callLogin(log)
         if(data.faculty_id){
             sessionStorage.setItem('logged',JSON.stringify(data))
+            window.location.assign("/")
         }
         else{
             setInfo(data.error)
         }
-        window.location.assign("/")
     }
 
     return(

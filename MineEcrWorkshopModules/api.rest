@@ -29,8 +29,28 @@ Content-Type: application/json
 
 {
     "mail":"hod.cse@mec.in",
-    "pass":"mec@cse"
+    "pass":"mec@cs"
 }
 
 ###
 
+GET http://localhost:1234/seminar/find/1
+
+###
+
+POST http://localhost:1234/seminar/propose
+Content-Type: application/json
+
+{
+    "seminar_name":"RasberryPy",
+    "dept_id":1,
+    "proposed_by":6007
+}
+
+###
+GET http://localhost:1234/seminar/loadforlevel1/1/6001
+
+
+###
+
+PUT http://localhost:1234/seminar/acknowledgelevel1/1/6001

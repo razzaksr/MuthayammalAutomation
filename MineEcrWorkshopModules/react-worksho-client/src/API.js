@@ -17,8 +17,13 @@ export const pushWorkshop=async(obj)=>{
 }
 
 export const callLogin=async(obj)=>{
-    const response=await axios.post(`${url}/login`,obj)
-    return response.data
+    try{
+        const response=await axios.post(`${url}/login`,obj)
+        return response.data
+    }
+    catch(err){
+        return {"error":"Invalid credientials"}
+    }
 }
 
 export const callLoadLevel1=async(dept,emp)=>{

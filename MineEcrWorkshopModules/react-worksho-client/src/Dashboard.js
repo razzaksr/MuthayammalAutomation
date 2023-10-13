@@ -14,7 +14,7 @@ export const Dashboard=()=>{
 
     useEffect(()=>{
         const log=JSON.parse(sessionStorage.getItem("logged"))
-        if(log.faculty_desig===403){
+        if(log.faculty_desig==403){
             setHodView(true)
         }
         else if(log.faculty_desig==401){
@@ -23,8 +23,9 @@ export const Dashboard=()=>{
         else{
             setFaculty(log)
             setHodView(false)
+            setPrincipalView(false)
         }
-    },[hodView])
+    },[hodView,principalView])
 
     return(
         <>
@@ -39,7 +40,7 @@ export const Dashboard=()=>{
                     <PrincipalDashboard/>
                 </>
                 :
-                <>
+                
                     (hodView)
                     ?
                     <>
@@ -55,7 +56,7 @@ export const Dashboard=()=>{
                             </Routes>
                         </BrowserRouter>
                     </>
-                </>
+                
             }
         </>
     )
